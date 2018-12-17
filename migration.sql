@@ -2,7 +2,7 @@ USE adlister_db;
 
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS cagory;
+DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS ads_category;
 
 CREATE TABLE users (
@@ -22,6 +22,7 @@ CREATE TABLE ads (
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
 );
+
 CREATE TABLE category(
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   category VARCHAR(100) NOT NULL,
