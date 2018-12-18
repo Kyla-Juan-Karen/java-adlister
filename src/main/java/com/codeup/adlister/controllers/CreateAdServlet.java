@@ -29,7 +29,15 @@ public class CreateAdServlet extends HttpServlet {
             request.getParameter("title"),
             request.getParameter("description")
         );
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+
+        if (!ad.getTitle().isEmpty() && !ad.getDescription().isEmpty()) {
+            request.getSession().setAttribute("failedAd", false);
+            DaoFactory.getAdsDao().insert(ad);
+            response.sendRedirect("/ads");
+        } else {
+            //Redirect to create ad and Alert user they can't have an empty ad
+            request.getSession().setAttribute("failedAd", true);
+            response.sendRedirect("/ads/create");
+        }
     }
 }
