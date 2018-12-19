@@ -7,6 +7,12 @@
 </head>
     <jsp:include page="partials/navbar.jsp"/>
 
+   <c:choose>
+       <c:when test="${form_empty}">
+           <h2 style="color:red"> Why bother coming to this page if you aren't changing anything, yo? </h2>
+       </c:when>
+   </c:choose>
+
     <form method="post">
         <label for="new_username"> New Username: </label>
         <input type="text" name="new_username" id="new_username"/>

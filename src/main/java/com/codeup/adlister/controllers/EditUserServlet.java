@@ -42,7 +42,8 @@ public class EditUserServlet extends HttpServlet {
         User updated_user = null;
         //Checking to see if any of the input is null and making the new user object accordingly...
         if(new_password.isEmpty() && new_username.isEmpty()){
-            request.getSession().setAttribute("empty", true);
+            request.getSession().setAttribute("form_empty", true);
+            response.sendRedirect("/profile/edit");
         } else if(new_username.isEmpty()){
             DaoFactory.getUsersDao().updatePassword(new_password, currentUser);
             response.sendRedirect("/profile");
