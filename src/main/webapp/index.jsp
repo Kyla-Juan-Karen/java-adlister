@@ -9,7 +9,8 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
     <div class="container">
-        <h1>Welcome to the Adlister!</h1>
+        <h1>Welcome to Radlister 2 the Raddening!</h1>
+        <input type="text" placeholder="Search...">
     </div>
 </body>
 </html>
