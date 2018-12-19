@@ -13,6 +13,10 @@
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
 
+    <%--Edit Profile Button--%>
+    <button><a href="/profile/edit"> Edit Profile</a></button>
+
+
     <div>
         <h1> Your Ads: </h1>
         <c:forEach items="${users_ads}" var="ad">

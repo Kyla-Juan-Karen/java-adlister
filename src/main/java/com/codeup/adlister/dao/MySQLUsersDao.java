@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 import com.mysql.cj.jdbc.Driver;
 import com.codeup.adlister.Config;
 
@@ -8,6 +9,7 @@ import java.sql.*;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
+    private Password passObj;
 
     public MySQLUsersDao(Config config) {
         try {
@@ -23,6 +25,51 @@ public class MySQLUsersDao implements Users {
     }
 
 
+//  Updating Table Methods=====================================================================================================================
+    @Override
+    public User updatePassword(String password, User user){
+        String query = "UPDATE users SET password = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            password = passObj.hash(password);
+            stmt.setString(1, password);
+            stmt.setLong(2, user.getId());
+            int user_id = stmt.executeUpdate();
+            return findById(user_id);
+
+        } catch (SQLException e) {
+           throw new RuntimeException("Issue updating password");
+        }
+    }
+
+    @Override
+    public User updateUsername (String username, User user){
+        String query = "UPDATE users SET username = ? WHERE id = ?";
+        return update(query, username, user);
+
+    }
+
+    @Override
+    public User updateEmail (String email, User user){
+        String query = "UPDATE users SET email = ? WHERE id = ?";
+        return update(query, email, user);
+    }
+
+    private User update(String query, String info_to_update, User user){
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, info_to_update);
+            stmt.setLong(2, user.getId());
+            int user_id = stmt.executeUpdate();
+            return findById(user_id);
+
+        } catch (SQLException e) {
+           throw new RuntimeException("Issue updating user information.");
+        }
+    }
+
+//=====================================================================================================================
+
     @Override
     public User findByUsername(String username) {
         String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
@@ -32,6 +79,18 @@ public class MySQLUsersDao implements Users {
             return extractUser(stmt.executeQuery());
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    private User findById(int Id){
+        String query = "Select * from users where id = ? Limit 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, Id);
+            ResultSet rs = stmt.executeQuery();
+            return extractUser(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Problem identifying the user");
         }
     }
 
