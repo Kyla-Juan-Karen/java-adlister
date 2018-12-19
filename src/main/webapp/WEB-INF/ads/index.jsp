@@ -21,12 +21,6 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-        <form method="get">
-            <input type="submit" name="update" value="Update Ad" >
-        </form>
-        <form method="post">
-            <input type="submit" name="delete" value="Delete Ad">
-        </form>
         </div>
     </c:forEach>
 </div>

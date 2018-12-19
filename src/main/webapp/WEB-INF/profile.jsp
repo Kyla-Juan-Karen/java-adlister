@@ -24,6 +24,12 @@
         <c:forEach items="${users_ads}" var="ad">
             <h2><c:out value="${ad.getTitle()}"/></h2>
             <p> <c:out value="${ad.getDescription()}"/> </p>
+            <form method="get">
+                <input type="submit" name="update" value="Update Ad" >
+            </form>
+            <form method="post">
+                <input type="submit" name="delete" value="Delete Ad">
+            </form>
         </c:forEach>
     </div>
 </body>
