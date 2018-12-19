@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,14 +9,19 @@
 <body>
     <div class="container">
         <h1>Create a new Ad</h1>
+       <c:choose>
+           <c:when test="${failedAd}">
+               <h2 style="color:red"> Please Fill In All Forms</h2>
+           </c:when>
+       </c:choose>
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text">
+                <input id="title" name="title" class="form-control" type="text" value="${sticky1}"/>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" type="text"></textarea>
+                <textarea id="description" name="description" class="form-control" type="text">${sticky2}</textarea>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
