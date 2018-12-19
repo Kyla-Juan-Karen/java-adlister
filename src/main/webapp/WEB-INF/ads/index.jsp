@@ -30,6 +30,5 @@
         </div>
     </c:forEach>
 </div>
-<%--test--%>
 </body>
 </html>
