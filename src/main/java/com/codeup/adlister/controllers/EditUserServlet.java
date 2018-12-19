@@ -15,7 +15,6 @@ import java.io.IOException;
 public class EditUserServlet extends HttpServlet {
 //    DOGET
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().setAttribute("form_error", false);
         request.getRequestDispatcher("/WEB-INF/edit_user.jsp").forward(request, response);
     }
 
@@ -40,18 +39,20 @@ public class EditUserServlet extends HttpServlet {
 
         //Format: If NotEmpty, do the thing with the update and whatnot
         if (!new_username.isEmpty()){
-            DaoFactory.getUsersDao().updateUsername(new_username, currentUser);
+            currentUser = DaoFactory.getUsersDao().updateUsername(new_username, currentUser);
         }
         if (!new_password.isEmpty()){
-            DaoFactory.getUsersDao().updatePassword(new_password, currentUser);
+            currentUser = DaoFactory.getUsersDao().updatePassword(new_password, currentUser);
         }
         if (!new_email.isEmpty()){
-            DaoFactory.getUsersDao().updateEmail(new_email, currentUser);
+            currentUser = DaoFactory.getUsersDao().updateEmail(new_email, currentUser);
         }
         if (new_email.isEmpty() && new_password.isEmpty() && new_username.isEmpty()){
             request.getSession().setAttribute("form_error", true);
             response.sendRedirect("/profile/edit");
         } else {
+            request.getSession().setAttribute("form_error", false);
+            request.getSession().setAttribute("user", currentUser);
             response.sendRedirect("/profile");
         }
     }
