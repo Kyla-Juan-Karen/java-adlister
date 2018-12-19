@@ -38,6 +38,21 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving users ads.", e);
         }
     }
+    @Override
+    public List<Ad> search(String search){
+        String sql = "SELECT * FROM ads WHERE title LIKE ?";
+        String searchTermWithWildCards = "%" + search + "%";
+
+        try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, searchTermWithWildCards);
+
+        ResultSet rs = stmt.executeQuery();
+        return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error searching ads.", e);
+        }
+    }
 
 
     public void deleteAd(Ad ad) {

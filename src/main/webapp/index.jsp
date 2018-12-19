@@ -10,6 +10,13 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
     <div class="container">
         <h1>Welcome to the Adlister!</h1>
+        <%--<form action="search" method="get">--%>
+            <%--<input type="text" placeholder="Search..." >--%>
+        <%--</form>--%>
+        <form action="/search" method="post">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">search</button>
+        </form>
     </div>
 </body>
 </html>
