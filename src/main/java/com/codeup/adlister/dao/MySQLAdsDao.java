@@ -41,6 +41,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+
     public void deleteAd(Ad ad) {
         try {
             String query = "DELETE FROM ads WHERE id = ?";
@@ -52,8 +53,8 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public void UdateAd(Ad ad) {
-        String query = ""
+    public void udateAd(Ad ad) {
+//        String query = ""
     }
 
     @Override
@@ -84,7 +85,6 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error creating a new ad.", e);
         }
     }
-
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(

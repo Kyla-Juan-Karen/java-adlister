@@ -14,12 +14,13 @@ import java.io.IOException;
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().getAttribute("sticky1");
+        request.getSession().getAttribute("sticky2");
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -31,13 +32,17 @@ public class CreateAdServlet extends HttpServlet {
         );
 
         if (!ad.getTitle().isEmpty() && !ad.getDescription().isEmpty()) {
-            request.getSession().setAttribute("failedAd", false);
             DaoFactory.getAdsDao().insert(ad);
             response.sendRedirect("/ads");
         } else {
             //Redirect to create ad and Alert user they can't have an empty ad
             request.getSession().setAttribute("failedAd", true);
+            String first = request.getParameter("title");
+            request.getSession().setAttribute("sticky1", first);
+            String second = request.getParameter("description");
+            request.getSession().setAttribute("sticky2", second);
             response.sendRedirect("/ads/create");
+            //trying to have input stays there after resubmit//
         }
     }
 }
