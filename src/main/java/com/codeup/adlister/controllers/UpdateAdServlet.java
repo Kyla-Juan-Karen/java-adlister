@@ -10,11 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
-public class AdsIndexServlet extends HttpServlet {
+@WebServlet(name = "UpdateAdServlet")
+public class UpdateAdServlet extends HttpServlet {
+
+        Ads dao = DaoFactory.getAdsDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+
+        long id = Long.parseLong("id");
+        String title = request.getParameter("title");
+        String desciption = request.getParameter("description");
+
+
+
+        request.getRequestDispatcher("/create/ads").forward(request, response);
     }
 }
