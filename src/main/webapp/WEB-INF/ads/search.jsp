@@ -11,7 +11,7 @@
 <%--<jsp:include page="/WEB-INF/partials/search.jsp" />--%>
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <h1>Here Are all the ads you searched for!</h1>
     <form action="/search" method="post">
         <input type="text" name="search" placeholder="Search...">
         <button type="submit">search</button>
@@ -21,14 +21,15 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-        <form method="get">
-            <input type="submit" name="update" value="Update Ad" >
-        </form>
-        <form method="post">
-            <input type="submit" name="delete" value="Delete Ad">
-        </form>
+            <form method="get">
+                <input type="submit" name="update" value="Update Ad" >
+            </form>
+            <form method="post">
+                <input type="submit" name="delete" value="Delete Ad">
+            </form>
         </div>
     </c:forEach>
 </div>
+
 </body>
 </html>

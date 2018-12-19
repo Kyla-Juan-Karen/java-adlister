@@ -6,9 +6,7 @@ import com.mysql.cj.jdbc.Driver;
 import com.codeup.adlister.Config;
 
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import com.codeup.adlister.Config;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +36,21 @@ public class MySQLAdsDao implements Ads {
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving users ads.", e);
+        }
+    }
+    @Override
+    public List<Ad> search(String search){
+        String sql = "SELECT * FROM ads WHERE title LIKE ?";
+        String searchTermWithWildCards = "%" + search + "%";
+
+        try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, searchTermWithWildCards);
+
+        ResultSet rs = stmt.executeQuery();
+        return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error searching ads.", e);
         }
     }
 

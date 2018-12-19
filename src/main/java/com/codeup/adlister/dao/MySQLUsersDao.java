@@ -5,6 +5,7 @@ import com.codeup.adlister.util.Password;
 import com.mysql.cj.jdbc.Driver;
 import com.codeup.adlister.Config;
 
+import com.codeup.adlister.Config;
 import java.sql.*;
 
 public class MySQLUsersDao implements Users {
