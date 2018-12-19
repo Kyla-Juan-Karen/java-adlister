@@ -24,32 +24,47 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+
+//  Updating Table Methods=====================================================================================================================
+    @Override
     public void updatePassword(String password, User user){
-        String query = "UPDATE users";
-        query += "SET password = ?";
-        query += "WHERE id = ?";
+        String query = "UPDATE users SET password = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
             password = passObj.hash(password);
-            stmt.setString(1,password);
+            stmt.setString(1, password);
             stmt.setLong(2, user.getId());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
     public void updateUsername (String username, User user){
-        String query = "UPDATE users";
-        query += "SET username = ?";
-        query += "WHERE id = ?";
+        String query = "UPDATE users SET username = ? WHERE id = ?";
+        update(query, username, user);
+
+    }
+
+    @Override
+    public void updateEmail (String email, User user){
+        String query = "UPDATE users SET email = ? WHERE id = ?";
+        update(query, email, user);
+    }
+
+    private void update(String query, String info_to_update, User user){
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, username);
+            stmt.setString(1, info_to_update);
             stmt.setLong(2, user.getId());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+//=====================================================================================================================
 
     @Override
     public User findByUsername(String username) {

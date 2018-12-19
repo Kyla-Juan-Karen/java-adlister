@@ -15,6 +15,7 @@ import java.io.IOException;
 public class EditUserServlet extends HttpServlet {
 //    DOGET
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().setAttribute("form_error", false);
         request.getRequestDispatcher("/WEB-INF/edit_user.jsp").forward(request, response);
     }
 
@@ -25,6 +26,7 @@ public class EditUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //Grabbing params from form
         String new_username = request.getParameter("new_username");
+        String new_email = request.getParameter("new_email");
         //Getting current user from session
         User currentUser = (User) request.getSession().getAttribute("user");
 
@@ -34,25 +36,22 @@ public class EditUserServlet extends HttpServlet {
         if(request.getParameter("new_password").equals(request.getParameter("confirm_new_password"))){
             //...and if so, assigning the value to a variable
             new_password = request.getParameter("new_password");
-            request.getSession().setAttribute("passwords_match", true);
-        } else {
-            request.getSession().setAttribute("passwords_match", false);
         }
 
-        User updated_user = null;
-        //Checking to see if any of the input is null and making the new user object accordingly...
-        if(new_password.isEmpty() && new_username.isEmpty()){
-            request.getSession().setAttribute("form_empty", true);
+        //Format: If NotEmpty, do the thing with the update and whatnot
+        if (!new_username.isEmpty()){
+            DaoFactory.getUsersDao().updateUsername(new_username, currentUser);
+        }
+        if (!new_password.isEmpty()){
+            DaoFactory.getUsersDao().updatePassword(new_password, currentUser);
+        }
+        if (!new_email.isEmpty()){
+            DaoFactory.getUsersDao().updateEmail(new_email, currentUser);
+        }
+        if (new_email.isEmpty() && new_password.isEmpty() && new_username.isEmpty()){
+            request.getSession().setAttribute("form_error", true);
             response.sendRedirect("/profile/edit");
-        } else if(new_username.isEmpty()){
-            DaoFactory.getUsersDao().updatePassword(new_password, currentUser);
-            response.sendRedirect("/profile");
-        } else if (new_password.isEmpty()){
-            DaoFactory.getUsersDao().updateUsername(new_username, currentUser);
-            response.sendRedirect("/profile");
         } else {
-            DaoFactory.getUsersDao().updatePassword(new_password, currentUser);
-            DaoFactory.getUsersDao().updateUsername(new_username, currentUser);
             response.sendRedirect("/profile");
         }
     }

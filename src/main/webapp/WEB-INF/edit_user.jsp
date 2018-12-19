@@ -8,8 +8,8 @@
     <jsp:include page="partials/navbar.jsp"/>
 
    <c:choose>
-       <c:when test="${form_empty}">
-           <h2 style="color:red"> Why bother coming to this page if you aren't changing anything, yo? </h2>
+       <c:when test="${form_error}">
+           <h3 style="color:red"> Something went wrong, yo! Make sure your passwords match 'n stuff, dude.</h3>
        </c:when>
    </c:choose>
 
@@ -20,6 +20,9 @@
         <input type="text" name="new_password" id="new_password"/>
         <label for="confirm_new_password"> Confirm New Password: </label>
         <input type="text" name="new_password" id="confirm_new_password"/>
+        <label for="new_email"> New Email: </label>
+        <input type="email" id="new_email" name="new_email">
+        <button type="submit"> Done! </button>
     </form>
 
 

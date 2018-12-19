@@ -14,7 +14,7 @@
     </div>
 
     <%--Edit Profile Button--%>
-    <button><a href="/users/edit"> Edit Profile</a></button>
+    <button><a href="/profile/edit"> Edit Profile</a></button>
 
 
     <div>
