@@ -55,12 +55,16 @@ public class MySQLAdsDao implements Ads {
     }
 
 
-    public void deleteAd(Ad ad) {
+    public List<Ad> delete(String delete) {
+        String sql = "DELETE FROM ads WHERE title LIKE ?";
+        String searchTermWithWildCards = "%" + delete + "%";
+
         try {
-            String query = "DELETE FROM ads WHERE id = ?";
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setLong(1, ad.getId());
-            stmt.executeUpdate();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, Long.parseLong(searchTermWithWildCards));
+
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting ads.", e);
         }
