@@ -83,7 +83,7 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-    private User findById(int Id){
+    public User findById(int Id){
         String query = "Select * from users where id = ? Limit 1";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);

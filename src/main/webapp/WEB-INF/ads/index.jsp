@@ -21,12 +21,17 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
+
+         <form class= "ad_btn" action="/ad/page" method="get">
+            <button class="ad_btn" type="submit" name="title_of_ad" value="${ad.getTitle()}"> View Ad </button>
+         </form>
         <form method="get">
             <input type="submit" name="update" value="Update Ad" >
         </form>
         <form method="post">
             <input type="submit" name="delete" value="Delete Ad">
         </form>
+
         </div>
     </c:forEach>
 </div>
