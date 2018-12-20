@@ -67,24 +67,27 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-
-    public List<Ad> delete(String delete) {
-        String sql = "DELETE FROM ads WHERE title LIKE ?";
-        String searchTermWithWildCards = "%" + delete + "%";
-
+    public void deleteAd(Ad ad){
+        String sql = "DELETE FROM ads WHERE title = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setLong(1, Long.parseLong(searchTermWithWildCards));
-
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
+            stmt.setString(1,ad.getTitle());
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error deleting ads.", e);
+            e.printStackTrace();
         }
     }
 
-    public void udateAd(Ad ad) {
-//        String query = ""
+    public void editAd(Ad ad) {
+        String query = "UPDATE * FROM ads WHERE title = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1,ad.getTitle());
+            stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

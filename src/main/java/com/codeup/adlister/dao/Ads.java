@@ -9,7 +9,10 @@ public interface Ads {
     // get a list of all the ads
     List<Ad> all();
     List<Ad> search(String search);
-    List<Ad> delete(String delete);
+//    DELETE AD
+    void deleteAd (Ad ad);
+//    UPDATE AD
+    void editAd (Ad ad);
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
