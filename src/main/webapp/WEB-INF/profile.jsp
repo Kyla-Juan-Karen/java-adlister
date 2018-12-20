@@ -22,6 +22,7 @@
     <div>
         <h1> Your Ads: </h1>
         <c:forEach items="${users_ads}" var="ad">
+<<<<<<< HEAD
             <h2><c:out value="${ad.getTitle()}"/></h2>
             <p> <c:out value="${ad.getDescription()}"/> </p>
             <form method="get">
@@ -30,6 +31,15 @@
             <form method="post">
                 <input type="submit" name="delete" value="Delete Ad">
             </form>
+=======
+           <div>
+               <h2> <c:out value="${ad.getTitle()}"/> </h2>
+               <p> <c:out value="${ad.getDescription()}"/> </p>
+               <form class= "ad_btn" action="/ad/page" method="get">
+                    <button class="ad_btn" type="submit" name="title_of_ad" value="${ad.getTitle()}"> View Ad </button>
+               </form>
+           </div>
+>>>>>>> 58b0dd59c95f64d070e119932fed9c69cc9257e0
         </c:forEach>
     </div>
 </body>

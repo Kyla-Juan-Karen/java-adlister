@@ -54,6 +54,19 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    public Ad findAdsByTitle(String title) {
+        try {
+            String query = "SELECT * FROM ads WHERE title = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1,title);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads.", e);
+        }
+    }
+
 
     public List<Ad> delete(String delete) {
         String sql = "DELETE FROM ads WHERE title LIKE ?";
