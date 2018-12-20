@@ -20,8 +20,13 @@
     <div>
         <h1> Your Ads: </h1>
         <c:forEach items="${users_ads}" var="ad">
-            <h2><c:out value="${ad.getTitle()}"/></h2>
-            <p> <c:out value="${ad.getDescription()}"/> </p>
+           <div>
+               <h2> <c:out value="${ad.getTitle()}"/> </h2>
+               <p> <c:out value="${ad.getDescription()}"/> </p>
+               <form class= "ad_btn" action="/ad/page" method="get">
+                    <button class="ad_btn" type="submit" name="title_of_ad" value="${ad.getTitle()}"> View Ad </button>
+               </form>
+           </div>
         </c:forEach>
     </div>
 </body>
