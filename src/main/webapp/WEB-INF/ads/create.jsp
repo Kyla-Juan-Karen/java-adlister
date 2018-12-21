@@ -23,6 +23,11 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text">${sticky2}</textarea>
             </div>
+            <select class="form-group" name="category">
+                <c:forEach var="category" items="${categories}">
+                    <option value="${category.getCategoryId()}"> ${category.getCategory()} </option>
+                </c:forEach>
+            </select>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>

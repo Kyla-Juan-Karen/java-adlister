@@ -16,11 +16,11 @@ public class Category {
     }
 
     public String getCategory (){
-        return this.name;
+        return name;
     }
 
     public long getCategoryId (){
-        return this.Id;
+        return Id;
     }
 
 
