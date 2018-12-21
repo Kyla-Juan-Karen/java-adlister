@@ -79,14 +79,18 @@ public class MySQLAdsDao implements Ads {
     }
 
     public void editAd(Ad ad) {
-        String query = "UPDATE * FROM ads WHERE title = ?";
+        String query = "REPLACE into ads (id, user_id, title, description) VALUES (?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1,ad.getTitle());
-            stmt.executeQuery();
+            stmt.setLong(1, ad.getId());
+            stmt.setLong(2, ad.getUserId());
+            stmt.setString(3, ad.getTitle());
+            stmt.setString(4, ad.getDescription());
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Problem updating Ad");
         }
+
 
     }
 
