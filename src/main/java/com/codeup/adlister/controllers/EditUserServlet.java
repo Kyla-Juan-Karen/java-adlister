@@ -48,10 +48,8 @@ public class EditUserServlet extends HttpServlet {
             currentUser = DaoFactory.getUsersDao().updateEmail(new_email, currentUser);
         }
         if (new_email.isEmpty() && new_password.isEmpty() && new_username.isEmpty()){
-            request.getSession().setAttribute("form_error", true);
             response.sendRedirect("/profile/edit");
         } else {
-            request.getSession().setAttribute("form_error", false);
             request.getSession().setAttribute("user", currentUser);
             response.sendRedirect("/profile");
         }

@@ -58,11 +58,11 @@ public class MySQLUsersDao implements Users {
 
     private User update(String query, String info_to_update, User user){
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, info_to_update);
             stmt.setLong(2, user.getId());
-            int user_id = stmt.executeUpdate();
-            return findById(user_id);
+            stmt.executeUpdate();
+           return findById((int) user.getId());
 
         } catch (SQLException e) {
            throw new RuntimeException("Issue updating user information.");

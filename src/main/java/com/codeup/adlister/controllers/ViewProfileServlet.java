@@ -14,12 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
+@WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
 public class ViewProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
-            return;
         } else{
             User currentUser = (User) request.getSession().getAttribute("user");
             List<Ad> usersAds = DaoFactory.getAdsDao().findAdsByUserId(currentUser);

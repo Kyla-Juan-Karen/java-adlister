@@ -7,12 +7,6 @@
 </head>
     <jsp:include page="partials/navbar.jsp"/>
 
-   <c:choose>
-       <c:when test="${form_error}">
-           <h3 style="color:red"> Something went wrong, yo! Make sure your passwords match 'n stuff, dude.</h3>
-       </c:when>
-   </c:choose>
-
     <form method="post">
         <label for="new_username"> New Username: </label>
         <input type="text" name="new_username" id="new_username"/>
