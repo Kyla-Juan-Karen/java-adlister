@@ -36,6 +36,12 @@ public class LoginServlet extends HttpServlet {
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("loggedIn", true);
+
+//            This if statement runs if the ADMIN status of the user is TRUE
+            if (user.isAdmin()){
+                request.getSession().setAttribute("isAdmin", true);
+            }
+
             response.sendRedirect("/profile");
         } else {
             response.sendRedirect("/login");
