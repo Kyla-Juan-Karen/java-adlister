@@ -1,7 +1,7 @@
 
-insert into users (username, email, password)
-values ('admin', 'admin', 'admin'),
-       ('test', 'test', 'test');
+insert into users (username, email, password, isAdmin)
+values ('admin', 'admin', 'admin', true),
+       ('test', 'test', 'test', false);
 
 insert into ads (title, description, user_id)
 values ('first post', 'description', 1),
