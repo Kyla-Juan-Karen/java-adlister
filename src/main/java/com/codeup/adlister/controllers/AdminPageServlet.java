@@ -1,5 +1,7 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import java.io.IOException;
 @WebServlet (name="AdminPageServlet", urlPatterns = "/admin")
 public class AdminPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DaoFactory.getUsersDao().
         request.getRequestDispatcher("/WEB-INF/admin_page.jsp");
     }
 
