@@ -56,7 +56,7 @@ public class CreateAdServlet extends HttpServlet {
             String second = request.getParameter("description");
             request.getSession().setAttribute("sticky2", second);
             response.sendRedirect("/ads/create");
-            //trying to have input stays there after resubmit//
+            //input stays there after submit//
         }
     }
 }
