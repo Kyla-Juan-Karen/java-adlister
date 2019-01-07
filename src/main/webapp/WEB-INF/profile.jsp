@@ -31,6 +31,9 @@
                <form class= "ad_btn" action="/delete" method="post">
                    <button type="submit" name="delete_this_ad" value="${ad.getTitle()}">Delete Ad</button>
                </form>
+               <form class="user_btn" action="/delete" method="post">
+                   <button type="submit" name="delete_this_user" value="${user.getUsername()}">Delete User</button>
+               </form>
            </div>
         </c:forEach>
     </div>

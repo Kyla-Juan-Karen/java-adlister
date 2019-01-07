@@ -27,6 +27,6 @@ public class DeleteAdsServlet extends HttpServlet {
         Ad this_ad = DaoFactory.getAdsDao().findAdsByTitle(title);
         DaoFactory.getAdsDao().deleteAd(this_ad);
         response.sendRedirect("/profile");
-
     }
 }
+

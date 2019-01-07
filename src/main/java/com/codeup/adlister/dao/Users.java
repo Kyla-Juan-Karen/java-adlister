@@ -12,4 +12,5 @@ public interface Users {
     User updateUsername (String username, User user);
     User updateEmail (String email, User user);
 
+    void deleteUser(User this_user);
 }
