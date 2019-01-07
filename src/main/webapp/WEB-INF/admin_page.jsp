@@ -5,6 +5,7 @@
         <jsp:param name="title" value="Admin"/>
     </jsp:include>
 </head>
+<body>
     <jsp:include page="partials/navbar.jsp"/>
 
     <h1> Users </h1>
@@ -13,6 +14,7 @@
             <h5 class="card-text"> <c:out value="${user.getUsername()}"/> </h5>
         </div>
     </c:forEach>
+</body>
 
 
 
