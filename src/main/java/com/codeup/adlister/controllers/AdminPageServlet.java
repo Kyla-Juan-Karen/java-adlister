@@ -16,7 +16,7 @@ public class AdminPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = DaoFactory.getUsersDao().allUsers();
         request.getSession().setAttribute("users", users);
-        request.getRequestDispatcher("/WEB-INF/admin_page.jsp");
+        request.getRequestDispatcher("/WEB-INF/admin_page.jsp").forward(request,response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
