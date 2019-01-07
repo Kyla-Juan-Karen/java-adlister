@@ -1,3 +1,4 @@
+USE adlister_db;
 
 insert into users (username, email, password, isAdmin)
 values ('admin', 'admin', 'admin', true),

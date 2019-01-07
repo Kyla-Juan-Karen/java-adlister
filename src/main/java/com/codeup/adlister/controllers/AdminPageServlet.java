@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name="AdminPageServlet", urlPatterns = "/admin")
+@WebServlet (name="controllers.AdminPageServlet", urlPatterns = "/admin")
 public class AdminPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = DaoFactory.getUsersDao().allUsers();
         request.getSession().setAttribute("users", users);
-        request.getRequestDispatcher("/WEB-INF/admin_page.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/partials/admin_page.jsp").forward(request,response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
