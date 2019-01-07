@@ -12,14 +12,11 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteUserServlet", urlPatterns = "/delete")
 public class DeleteUserServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("delete_this_user");
         User this_user = DaoFactory.getUsersDao().findByUsername(username);
         DaoFactory.getUsersDao().deleteUser(this_user);
         response.sendRedirect("/profile");
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
