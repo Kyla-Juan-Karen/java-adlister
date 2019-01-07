@@ -13,8 +13,12 @@
     <h3> By: <c:out value="${ads_user.getUsername()}"/> </h3>
     <p style="display:none"> <c:out value="${this_ad.getId()}"/> </p>
     <p> <c:out value="${this_ad.getDescription()}"/> </p>
-    <form class= "ad_btn" action="/edit" method="get">
-        <button type="submit" name="edit_this_ad" value="${this_ad.getTitle()}">Edit Ad</button>
-    </form>
+   <c:choose>
+       <c:when test="">
+           <form class= "ad_btn" action="/edit" method="get">
+               <button type="submit" name="edit_this_ad" value="${this_ad.getTitle()}">Edit Ad</button>
+           </form>
+       </c:when>
+   </c:choose>
 </body>
 </html>
