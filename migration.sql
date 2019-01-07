@@ -1,15 +1,15 @@
-USE adlister_db;
+DROP DATABASE adlister_db;
+CREATE DATABASE adlister_db;
 
-DROP TABLE IF EXISTS ads;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS cagory;
-DROP TABLE IF EXISTS ads_category;
+
+USE adlister_db;
 
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(240) UNIQUE NOT NULL,
     email VARCHAR(240) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    isAdmin BOOLEAN NOT NULL,
     PRIMARY KEY (id)
 );
 

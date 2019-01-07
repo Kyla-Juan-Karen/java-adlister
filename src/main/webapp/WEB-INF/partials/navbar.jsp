@@ -14,6 +14,12 @@
                   <li><a href="/ads">Ads</a></li>
                   <li><a href="/ads/create">Create an Ad</a></li>
                   <li><a href="/logout">Logout</a></li>
+                  <%--FOR ADMINS ONLY--%>
+                  <c:choose>
+                      <c:when test="${sessionScope.isAdmin}">
+                        <li> <a href="/admin"> Admin Page </a></li>
+                     </c:when>
+                  </c:choose>
               </c:when>
 
               <%--This happens when you are LOGGED OUT--%>

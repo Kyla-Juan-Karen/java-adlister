@@ -12,10 +12,6 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
-    <%--<div>--%>
-        <%--<input type="text" placeholder="Search...">--%>
-    <%--</div>--%>
-    <%--Edit Profile Button--%>
     <button><a href="/profile/edit"> Edit Profile</a></button>
 
 
