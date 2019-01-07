@@ -7,7 +7,12 @@
 </head>
     <jsp:include page="partials/navbar.jsp"/>
 
-    <h1>[ Insert Admin Stuff Here ]</h1>
+    <h1> Users </h1>
+    <c:forEach items="${users}" var="user">
+        <div class="card">
+            <h5 class="card-text"> <c:out value="${user.getUsername()}"/> </h5>
+        </div>
+    </c:forEach>
 
 
 
