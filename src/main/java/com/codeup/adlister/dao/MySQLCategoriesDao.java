@@ -66,9 +66,6 @@ public class MySQLCategoriesDao implements Categories {
 
     private Category extractCategory(ResultSet rs){
         try {
-            if (! rs.next()) {
-                return null;
-            }
             return new Category (
                     rs.getLong("id"),
                     rs.getString("category")
