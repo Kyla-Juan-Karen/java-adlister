@@ -9,11 +9,13 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
+    <div class="container">
     <h1> Users </h1>
     <c:forEach items="${users}" var="user">
         <div class="card">
             <h5 class="card-text"> <c:out value="${user.getUsername()}"/> </h5>
         </div>
     </c:forEach>
+    </div>
 </body>
 </html>
