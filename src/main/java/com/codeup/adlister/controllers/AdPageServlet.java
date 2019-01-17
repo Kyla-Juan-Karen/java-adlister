@@ -15,6 +15,7 @@ import java.io.IOException;
 @WebServlet(name = "AdPageServlet", urlPatterns = "/ad/page")
 public class AdPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String title = request.getParameter("title_of_ad");
         Ad this_ad = DaoFactory.getAdsDao().findAdsByTitle(title);
         User user = DaoFactory.getUsersDao().findById((int) this_ad.getUserId());
@@ -27,6 +28,7 @@ public class AdPageServlet extends HttpServlet {
         request.setAttribute("ads_user", user);
         request.getSession().setAttribute("this_ad", this_ad);
         request.getRequestDispatcher("/WEB-INF/ads/ad_page.jsp").forward(request, response);
+
     }
 
 }
