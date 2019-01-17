@@ -75,14 +75,9 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public User updateEmail (String email, User user){
+    public User updateEmail (String email, User user) {
         String query = "UPDATE users SET email = ? WHERE id = ?";
         return update(query, email, user);
-    }
-
-    @Override
-    public void deleteUser(User this_user) {
-        String query = "DELETE username FROM users WHERE username = ?";
     }
 
     private User update(String query, String info_to_update, User user){
