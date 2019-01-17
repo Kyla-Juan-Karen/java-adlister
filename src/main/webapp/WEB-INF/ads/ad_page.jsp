@@ -14,9 +14,12 @@
     <p style="display:none"> <c:out value="${this_ad.getId()}"/> </p>
     <p> <c:out value="${this_ad.getDescription()}"/> </p>
    <c:choose>
-       <c:when test="">
+       <c:when test="${sessionScope.sameUser}">
            <form class= "ad_btn" action="/edit" method="get">
                <button type="submit" name="edit_this_ad" value="${this_ad.getTitle()}">Edit Ad</button>
+           </form>
+           <form class= "ad_btn" action="/delete" method="get">
+               <button type="submit" name="delete_this_ad" value="${this_ad.getTitle()}">Delete Ad</button>
            </form>
        </c:when>
    </c:choose>

@@ -18,6 +18,12 @@ public class AdPageServlet extends HttpServlet {
         String title = request.getParameter("title_of_ad");
         Ad this_ad = DaoFactory.getAdsDao().findAdsByTitle(title);
         User user = DaoFactory.getUsersDao().findById((int) this_ad.getUserId());
+        User currentUser = (User) request.getSession().getAttribute("user");
+        if(this_ad.getUserId() == currentUser.getId()){
+            request.getSession().setAttribute("sameUser", true);
+        } else {
+            request.getSession().setAttribute("sameUser", false);
+        }
         request.setAttribute("ads_user", user);
         request.getSession().setAttribute("this_ad", this_ad);
         request.getRequestDispatcher("/WEB-INF/ads/ad_page.jsp").forward(request, response);
