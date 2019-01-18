@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteAdsServlet", urlPatterns ="/delete")
-public class DeleteAdsServlet extends HttpServlet {
+@WebServlet(name = "DeleteUserServlet", urlPatterns ="/remove")
+public class DeleteUserServlet extends HttpServlet {
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        FIRST ATTEMPT
 //        String delete = request.getParameter("delete");
 //        request.setAttribute("ads", DaoFactory.getAdsDao().delete(delete));
 //        request.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(request,response);
 
-        String title = request.getParameter("delete_this_ad");
-        Ad this_ad = DaoFactory.getAdsDao().findAdsByTitle(title);
-        DaoFactory.getAdsDao().deleteAd(this_ad);
-        response.sendRedirect("/profile");
+
+        User this_user = (User) request.getSession().getAttribute("user");
+        DaoFactory.getUsersDao().deleteUser(this_user);
+        response.sendRedirect("/logout");
     }
 }
 
