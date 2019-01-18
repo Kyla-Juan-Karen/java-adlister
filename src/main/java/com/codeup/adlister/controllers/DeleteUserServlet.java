@@ -17,16 +17,16 @@ import java.io.IOException;
 public class DeleteUserServlet extends HttpServlet {
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        FIRST ATTEMPT
 //        String delete = request.getParameter("delete");
 //        request.setAttribute("ads", DaoFactory.getAdsDao().delete(delete));
 //        request.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(request,response);
 
-        String name = request.getParameter("delete_this_user");
-        User this_user = DaoFactory.getUsersDao().findByUsername(name);
+
+        User this_user = (User) request.getSession().getAttribute("user");
         DaoFactory.getUsersDao().deleteUser(this_user);
-        response.sendRedirect("/profile");
+        response.sendRedirect("/logout");
     }
 }
 

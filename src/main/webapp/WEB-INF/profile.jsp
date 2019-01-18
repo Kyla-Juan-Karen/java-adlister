@@ -13,8 +13,7 @@
         <h1>Welcome, ${sessionScope.user.username}!</h1>
 
     <button><a href="/profile/edit"> Edit Profile</a></button>
-
-
+    <button type="submit" name="delete_this_user" value="${user.getUsername()}"><a href="/remove">Delete User</a></button>
 
     <div>
         <h1> Your Ads: </h1>
@@ -27,31 +26,9 @@
                </form>
                <form class= "ad_btn" action="/delete" method="post">
                    <button type="submit" name="delete_this_ad" value="${ad.getTitle()}">Delete Ad</button>
-               </form>
-               <form class="user_btn" action="/delete" method="post">
-                   <button type="submit" name="delete_this_user" value="${user.getUsername()}">Delete User</button>
-               </form>
+               </form
            </div>
         </c:forEach>
-
-<%--//////This is where the ads are displayed////////////////--%>
-        <div>
-            <h1> Your Ads: </h1>
-            <c:forEach items="${users_ads}" var="ad">
-               <div>
-                   <h2> <c:out value="${ad.getTitle()}"/> </h2>
-                   <p> <c:out value="${ad.getDescription()}"/> </p>
-                   <form class= "ad_btn" action="/ad/page" method="get">
-                        <button class="ad_btn" type="submit" name="title_of_ad" value="${ad.getTitle()}"> View Ad </button>
-                   </form>
-                   <form class= "ad_btn" action="/delete" method="post">
-                       <button type="submit" name="delete_this_ad" value="${ad.getTitle()}">Delete Ad</button>
-                   </form>
-               </div>
-            </c:forEach>
-        </div>
-
-
     </div>
 </body>
 </html>
